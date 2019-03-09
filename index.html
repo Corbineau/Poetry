@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Poetry Generator</title>
+</head>
+
+<body>
+
+    <h1>Random Poetry is Fun</h1>
+
+
+    <div>
+        <p>
+            <strong>Add new random lines</strong>
+        </p>
+        <input type="text" id="lineAdd">  -- Add a line</input> <br />
+        <button onclick="storeLine()" id="lineBtn">Save line</button>
+    </div>
+    <br />
+    <div>
+        <strong>Generate your poem</strong> <br />
+        <input type="number" id="lineNumber"> -- how many lines do you want?</input> <br />
+        <button onclick="genPoem()" id="genPoem">Generate Poem</button>
+    </div>
+    <div id="poem" class="text">
+
+    </div>
+
+    <script type="text/javascript">
+
+        // sets up an empty array and an empty variable
+        var poemLines = [];
+        var lines;
+
+        function storeLine() {
+            var line = document.getElementById("lineAdd").value;
+            poemLines.push(line);
+            console.log(poemLines);
+            document.getElementById("lineAdd").value = " ";
+        }
+
+        //set changable html element
+
+        var myPoem = document.getElementById("poem");
+
+        // Generate the poem
+
+        function genPoem() {
+            //rewrite this later as an object constructor?
+            var thisPoem = [];
+            var lineNum = document.getElementById("lineNumber").value;
+            for (var i = 1; i <= lineNum; i++) {
+                var oneLine = poemLines[Math.floor(Math.random() * poemLines.length)];
+                var prettyLine = `${oneLine}<br />`
+                thisPoem.push(prettyLine)
+                console.log(oneLine);
+            }
+            myPoem.innerHTML = thisPoem;
+            document.getElementById("lineNumber").value = " ";
+        }  
+
+
+    </script>
+
+</body>
+
+</html>
