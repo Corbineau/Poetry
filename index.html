@@ -4,65 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Poetry Generator</title>
+
+    <!-- Added a link to our external stylesheet-->
+    <link rel="stylesheet" href="resources/css/reset.css">
+    <link rel="stylesheet" href="resources/css/style.css">
+
+    <!--added a link to google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Homemade+Apple" rel="stylesheet">
 </head>
 
-<body>
+<body class="column">
+    <header>
 
-    <h1>Random Poetry is Fun</h1>
+        <h1>Random Poetry is Fun</h1>
 
+    </header>
+    <div class="wrapper column center">
+        <div class="box column center" id="lineGen">
+            <h2>
+                Add new random lines
+            </h2>
+            <input type="text" id="lineAdd"> -- Add a line</input> 
+            <button onclick="storeLine()" id="lineBtn">Save line</button>
+        </div>
+        <div class="box column center" id="poemGen">
+            <div>
+                <h2>Generate your poem</h2> 
+                <input type="number" id="lineNumber"> -- how many lines do you want?</input> 
+                <button onclick="genPoem()" id="genPoem">Generate Poem</button>
+            </div>
+            <div id="poem" class="text">
 
-    <div>
-        <p>
-            <strong>Add new random lines</strong>
-        </p>
-        <input type="text" id="lineAdd">  -- Add a line</input> <br />
-        <button onclick="storeLine()" id="lineBtn">Save line</button>
+            </div>
+        </div>
     </div>
-    <br />
-    <div>
-        <strong>Generate your poem</strong> <br />
-        <input type="number" id="lineNumber"> -- how many lines do you want?</input> <br />
-        <button onclick="genPoem()" id="genPoem">Generate Poem</button>
-    </div>
-    <div id="poem" class="text">
 
-    </div>
+    <footer>
 
-    <script type="text/javascript">
-
-        // sets up an empty array and an empty variable
-        var poemLines = [];
-        var lines;
-
-        function storeLine() {
-            var line = document.getElementById("lineAdd").value;
-            poemLines.push(line);
-            console.log(poemLines);
-            document.getElementById("lineAdd").value = " ";
-        }
-
-        //set changable html element
-
-        var myPoem = document.getElementById("poem");
-
-        // Generate the poem
-
-        function genPoem() {
-            //rewrite this later as an object constructor?
-            var thisPoem = [];
-            var lineNum = document.getElementById("lineNumber").value;
-            for (var i = 1; i <= lineNum; i++) {
-                var oneLine = poemLines[Math.floor(Math.random() * poemLines.length)];
-                var prettyLine = `${oneLine}<br />`
-                thisPoem.push(prettyLine)
-                console.log(oneLine);
-            }
-            myPoem.innerHTML = thisPoem;
-            document.getElementById("lineNumber").value = " ";
-        }  
-
-
-    </script>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="resources/js/js.js"> </script>
 
 </body>
 
