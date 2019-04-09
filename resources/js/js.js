@@ -1,30 +1,59 @@
-        // sets up an empty array and an empty variable
-        var poemLines = [];
-        var lines;
+//this is where I am trying to use firebase because localstorage is fail.
+var db = firebase.firestore();
+// sets up two empty arrays for holding stuff that goes to localstorage, and stuff that comes back.
+let lineArray = [];
+let poemLines = [];
 
-        function storeLine() {
-            var line = document.getElementById("lineAdd").value;
-            poemLines.push(line);
-            console.log(poemLines);
-            document.getElementById("lineAdd").value = " ";
-        }
+class Poem {
+    constructor(lineNum) {
+        this.name = "";
+        this.lineNum = lineNum;
+        this.myLines = [];
+    }
+}
 
-        //set changable html element
 
-        var myPoem = document.getElementById("poem");
+storeLine = () => {
+    let line = $("#lineAdd").val();
+    console.log(`The line: ${line}`);
+    lineArray.push(line);
+    console.log(`This is the first array: ${lineArray}`);
+    // localStorage.clear();
+    localStorage.setItem("lines", JSON.stringify(lineArray));
+    $("#lineAdd").val("");
+}
 
-        // Generate the poem
 
-        function genPoem() {
-            //rewrite this later as an object constructor?
-            var thisPoem = [];
-            var lineNum = document.getElementById("lineNumber").value;
-            for (var i = 1; i <= lineNum; i++) {
-                var oneLine = poemLines[Math.floor(Math.random() * poemLines.length)];
-                var prettyLine = `${oneLine}<br />`
-                thisPoem.push(prettyLine)
-                console.log(oneLine);
-            }
-            myPoem.innerHTML = thisPoem.join(" ");
-            document.getElementById("lineNumber").value = " ";
-        }  
+$("#lineBtn").on("click", (event) => {
+    event.preventDefault();
+    storeLine();
+})
+
+//set changable html element
+
+let poemDiv = $("#poem");
+
+// Generate the poem
+
+const genPoem = () => {
+    let thisPoem = new Poem($("#lineNumber").val);
+    for (let i = 1; i <= thisPoem.lineNum; i++) {
+        let oneLine = poemLines[Math.floor(Math.random() * poemLines.length)];
+        let prettyLine = `${oneLine}<br />`
+        thisPoem.myLines.push(prettyLine);
+        // console.log(oneLine);
+    }
+    poemDiv.text(thisPoem.myLines.join(" "));
+    $("#lineNumber").val("");
+}
+
+$("#genPoem").on("click", (event) => {
+    event.preventDefault();
+    genPoem();
+})
+
+let storedLines = localStorage.getItem(JSON.parse("lines"));
+    console.log(storedLines);
+if (storedLines) {
+    poemLines = JSON.parse(storedLines);
+};

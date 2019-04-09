@@ -25,13 +25,13 @@
                 Add new random lines
             </h2>
             <input type="text" id="lineAdd"> -- Add a line</input> 
-            <button onclick="storeLine()" id="lineBtn">Save line</button>
+            <button id="lineBtn">Save line</button>
         </div>
         <div class="box column center" id="poemGen">
             <div>
                 <h2>Generate your poem</h2> 
                 <input type="number" id="lineNumber"> -- how many lines do you want?</input> 
-                <button onclick="genPoem()" id="genPoem">Generate Poem</button>
+                <button id="genPoem">Generate Poem</button>
             </div>
             <div id="poem" class="text">
 
@@ -42,6 +42,19 @@
     <footer>
 
     </footer>
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBRFL-6NLYpYq-nRxQzAM4xxfwOIZXNDXA",
+    authDomain: "poetry-25463.firebaseapp.com",
+    databaseURL: "https://poetry-25463.firebaseio.com",
+    projectId: "poetry-25463",
+    storageBucket: "poetry-25463.appspot.com",
+    messagingSenderId: "1051791837474"
+  };
+  firebase.initializeApp(config);
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="resources/js/js.js"> </script>
 
