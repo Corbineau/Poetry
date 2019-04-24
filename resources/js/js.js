@@ -1,7 +1,7 @@
 //this is where I am trying to use firebase because localstorage is fail.
 var db = firebase.firestore();
 // sets up two empty arrays for holding stuff that goes to localstorage, and stuff that comes back.
-let lineArray = [];
+let lineArray = []; // but if I am using firestore, probably can't store arrays. ;_;
 let poemLines = [];
 
 class Poem {
