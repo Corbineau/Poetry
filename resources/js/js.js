@@ -67,8 +67,6 @@ const genPoem = () => {
     $("#lineNumber").val("");
 }
 
-const 
-
 const savePoem = (poemName) => {
 db.collection("poems").doc(`${poemName}`).set({
     name: poemName,
